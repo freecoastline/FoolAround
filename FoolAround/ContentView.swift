@@ -12,12 +12,13 @@ struct ContentView: View {
     @State var inputText = ""
     var body: some View {
         VStack {
-            Text(timeLabel)
-                .font(.footnote)
-            Spacer()
-            TextField("", text: $inputText)
+            ScrollView(.vertical, showsIndicators: true) {
+                Text(timeLabel)
+                    .font(.footnote)
+                Spacer()
+                TextField("", text: $inputText)
+            }
         }
-        .padding()
     }
 }
 
