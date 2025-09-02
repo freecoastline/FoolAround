@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    var timeLabel = DateFormat().formatDate(Date())
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text(timeLabel)
+                .font(.footnote)
+            Spacer()
+            
         }
         .padding()
     }
