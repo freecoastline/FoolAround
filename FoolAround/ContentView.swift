@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
     var timeLabel = DateFormat().formatDate(Date())
     @State var inputText = ""
+    var novel = ["I", "am", "great"]
+    @State var number = 0
     var body: some View {
         VStack {
             ScrollView(.vertical, showsIndicators: true) {
@@ -17,11 +19,11 @@ struct ContentView: View {
                     .font(.footnote)
                 Spacer()
                 TextEditor(text: $inputText)
-                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                    .frame(width: UIScreen.main.bounds.width, height: 500)
                     .padding()
                     .border(Color.gray, width: 1)
                     .onChange(of: inputText) { _, newValue in
-                        self.inputText = "Im great"
+                        self.inputText += "good"
                     }
                 
             }
