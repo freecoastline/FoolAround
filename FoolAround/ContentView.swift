@@ -20,6 +20,9 @@ struct ContentView: View {
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                     .padding()
                     .border(Color.gray, width: 1)
+                    .onChange(of: inputText) { _, newValue in
+                        self.inputText = "Im great"
+                    }
                 
             }
         }
