@@ -16,7 +16,11 @@ struct ContentView: View {
                 Text(timeLabel)
                     .font(.footnote)
                 Spacer()
-                TextField("", text: $inputText)
+                TextEditor(text: $inputText)
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                    .padding()
+                    .border(Color.gray, width: 1)
+                
             }
         }
     }
