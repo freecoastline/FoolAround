@@ -19,6 +19,7 @@ struct ContentView: View {
                     .font(.footnote)
                 Spacer()
                 TextEditor(text: $inputText)
+                    .font(.system(size: 30))
                     .frame(width: UIScreen.main.bounds.width, height: 500)
                     .padding()
                     .border(Color.gray, width: 1)
