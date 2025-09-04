@@ -33,8 +33,8 @@ struct ContentView: View {
     }
     
     func printLine(_ lineNumber: Int) -> String {
-        let fileName = "random"
-        guard let file = Bundle.main.url(forResource: fileName, withExtension: "rtf") else {
+        let fileName = "normalMan"
+        guard let file = Bundle.main.url(forResource: fileName, withExtension: "txt") else {
             print("Not find the txt")
             return ""
         }
