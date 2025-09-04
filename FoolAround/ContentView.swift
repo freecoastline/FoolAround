@@ -24,12 +24,36 @@ struct ContentView: View {
                     .padding()
                     .border(Color.gray, width: 1)
                     .onChange(of: inputText) { _, newValue in
-                        self.inputText += "good"
+                        self.inputText = self.inputText + printLine(number)
+                        number += 1
                     }
                 
             }
         }
     }
+    
+    func printLine(_ lineNumber: Int) -> String {
+        let fileName = "random"
+        guard let file = Bundle.main.url(forResource: fileName, withExtension: "rtf") else {
+            print("Not find the txt")
+            return ""
+        }
+        
+        var readLine = ""
+        
+        do {
+            let contents = try String(contentsOf: file, encoding: .ascii)
+            let lines = contents.split(separator: "\n")
+            print("\(lines.count)")
+            readLine = String(lines[lineNumber])
+        } catch {
+            return (error.localizedDescription)
+        }
+        
+        return readLine
+                
+    }
+    
 }
 
 #Preview {
