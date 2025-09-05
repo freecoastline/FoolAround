@@ -15,6 +15,22 @@ struct ContentView: View {
     @State var number = 0
     var body: some View {
         VStack {
+            NavigationStack {
+                HStack {
+                    Text("Back")
+                    Text("fanhui")
+                            .toolbar {
+                                Button("About") {
+                                    print("About tapped!")
+                                }
+
+                                Button("Help") {
+                                    print("Help tapped!")
+                                }
+                            }
+                }
+            }
+            
             ScrollView(.vertical, showsIndicators: true) {
                 Text(timeLabel)
                     .font(.footnote)
