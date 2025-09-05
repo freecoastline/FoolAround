@@ -16,21 +16,29 @@ struct ContentView: View {
     var body: some View {
         VStack {
             NavigationStack {
-                HStack {
-                    Text("Back")
-                    Text("fanhui")
-                            .toolbar {
-                                Button("About") {
-                                    print("About tapped!")
-                                }
-
-                                Button("Help") {
-                                    print("Help tapped!")
-                                }
+                Text("Your Content Here")
+                    .navigationTitle("My App Title")
+                    .navigationBarTitleDisplayMode(.inline) // Ensures title is inline
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button("Settings") {
+                                // Action for settings button
                             }
-                }
+                        }
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button(action: {
+                                // Action for add button
+                            }) {
+                                Image(systemName: "plus.circle.fill")
+                            }
+                        }
+                        // Example of placing a custom view in the principal area
+                        ToolbarItem(placement: .principal) {
+                            Text("Custom Title View")
+                                .font(.headline)
+                        }
+                    }
             }
-            
             ScrollView(.vertical, showsIndicators: true) {
                 Text(timeLabel)
                     .font(.footnote)
