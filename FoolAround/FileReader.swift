@@ -8,30 +8,47 @@
 import Foundation
 
 class FileReader {
-    let fileName:String?
+    private let fileName: String
+    private var cachedLines: [String]? = nil
     
     init(fileName: String?) {
-        self.fileName = fileName
+        self.fileName = fileName ?? "normalMan"
+        // 初始化时加载文件内容
+        _ = loadFileContents()
     }
     
-    func printLine(_ lineNumber: Int) -> String {
-        let fileName = "normalMan"
-        var readLine = ""
+    /// 加载文件内容并缓存
+    private func loadFileContents() -> [String] {
+        if let cachedLines = cachedLines {
+            return cachedLines
+        }
+        
         guard let file = Bundle.main.url(forResource: fileName, withExtension: "txt") else {
-            assertionFailure("construct file fail")
-            return ""
+            print("无法找到文件: \(fileName).txt")
+            return []
         }
 
         do {
-            let contents = try String(contentsOf: file, encoding: .ascii)
-            let lines = contents.split(separator: "\n")
-            print("\(lines.count)")
-            readLine = String(lines[lineNumber])
+            let contents = try String(contentsOf: file, encoding: .utf8)
+            let lines = contents.split(separator: "\n").map { String($0) }
+            self.cachedLines = lines
+            return lines
         } catch {
-            return (error.localizedDescription)
+            print("读取文件错误: \(error.localizedDescription)")
+            return []
+        }
+    }
+    
+    /// 读取指定行的内容，带有边界检查
+    func printLine(_ lineNumber: Int) -> String {
+        let lines = loadFileContents()
+        
+        // 边界检查
+        guard !lines.isEmpty else { return "" }
+        guard lineNumber >= 0 && lineNumber < lines.count else {
+            return ""
         }
         
-        return readLine
-                
+        return lines[lineNumber]
     }
 }
